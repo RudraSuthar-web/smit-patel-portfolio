@@ -453,9 +453,3 @@ header.scrolled {
     }
 }
 
-.logo-img {
-    height: 50px;
-    width: auto;
-    color: var(--text-color); /* follows theme automatically */
-}
-
