@@ -104,33 +104,6 @@ header {
     cursor: pointer;
 }
 
-@media (max-width: 768px) {
-    .hamburger {
-        display: block;
-    }
-    .nav-menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background: var(--bg-color);
-        padding: 1rem 0;
-        box-shadow: 0 2px 5px var(--shadow);
-    }
-    .nav-menu.active {
-        display: flex;
-    }
-    .nav-menu a {
-        padding: 1rem;
-        text-align: center;
-    }
-    .nav-right {
-        gap: 1.5rem;
-    }
-}
-
 /* Theme Toggle */
 .theme-toggle {
     background: none;
@@ -367,22 +340,87 @@ footer {
     transition: background-color 0.3s ease;
 }
 
+/* Navbar Scroll Effect */
+header.scrolled {
+    background: rgba(255, 255, 255, 0.8); /* translucent in light mode */
+    backdrop-filter: blur(8px);           
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+[data-theme="light"] header.scrolled .logo,
+[data-theme="light"] header.scrolled .nav-menu a,
+[data-theme="light"] header.scrolled .hamburger,
+[data-theme="light"] header.scrolled .theme-toggle {
+    color: #000;
+}
+
+[data-theme="dark"] header.scrolled {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] header.scrolled .logo,
+[data-theme="dark"] header.scrolled .nav-menu a,
+[data-theme="dark"] header.scrolled .hamburger,
+[data-theme="dark"] header.scrolled .theme-toggle {
+    color: #fff;
+}
+
+/* Navbar text fix for light mode over dark hero */
+[data-theme="light"] header .logo,
+[data-theme="light"] header .nav-menu a,
+[data-theme="light"] header .hamburger,
+[data-theme="light"] header .theme-toggle {
+    color: #fff;
+}
+
+/* Revert to dark text when scrolled */
+[data-theme="light"] header.scrolled .logo,
+[data-theme="light"] header.scrolled .nav-menu a,
+[data-theme="light"] header.scrolled .hamburger,
+[data-theme="light"] header.scrolled .theme-toggle {
+    color: #000;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: var(--bg-color);
+        padding: 1rem 0;
+        box-shadow: 0 2px 5px var(--shadow);
+    }
+    .nav-menu.active {
+        display: flex;
+    }
+    .nav-menu a {
+        padding: 1rem;
+        text-align: center;
+    }
     .nav-right {
         gap: 1.5rem;
     }
-    
-    .hero h1 {
-        font-size: 2.5rem;
+
+    /* Fix for hamburger menu text visibility */
+    [data-theme="light"] .nav-menu {
+        background: #ffffff;
     }
-    
-    .hero-subtitle {
-        font-size: 1.3rem;
+    [data-theme="light"] .nav-menu a {
+        color: #000 !important;
     }
-    
-    .services-grid {
-        grid-template-columns: 1fr;
+    [data-theme="dark"] .nav-menu {
+        background: #000000;
+    }
+    [data-theme="dark"] .nav-menu a {
+        color: #fff !important;
     }
 }
 
@@ -413,47 +451,4 @@ footer {
         width: 25px;
         height: 25px;
     }
-}
-
-/* Navbar Scroll Effect */
-header.scrolled {
-    background: rgba(255, 255, 255, 0.8); /* translucent in light mode */
-    backdrop-filter: blur(8px);           /* glassmorphism effect */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-[data-theme="light"] header.scrolled .logo,
-[data-theme="light"] header.scrolled .nav-menu a,
-[data-theme="light"] header.scrolled .hamburger,
-[data-theme="light"] header.scrolled .theme-toggle {
-    color: #000; /* keep readable on translucent bg */
-}
-
-[data-theme="dark"] header.scrolled {
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
-}
-
-[data-theme="dark"] header.scrolled .logo,
-[data-theme="dark"] header.scrolled .nav-menu a,
-[data-theme="dark"] header.scrolled .hamburger,
-[data-theme="dark"] header.scrolled .theme-toggle {
-    color: #fff;
-}
-
-
-/* Navbar text fix for light mode over dark hero */
-[data-theme="light"] header .logo,
-[data-theme="light"] header .nav-menu a,
-[data-theme="light"] header .hamburger,
-[data-theme="light"] header .theme-toggle {
-    color: #fff;
-}
-
-/* Revert to dark text when scrolled */
-[data-theme="light"] header.scrolled .logo,
-[data-theme="light"] header.scrolled .nav-menu a,
-[data-theme="light"] header.scrolled .hamburger,
-[data-theme="light"] header.scrolled .theme-toggle {
-    color: #000;
 }
